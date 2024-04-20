@@ -1,0 +1,9 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main(void) {
+    cout << "safety\n";
+    return 0;
+}
+
+
