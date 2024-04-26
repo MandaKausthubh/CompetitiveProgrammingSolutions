@@ -1,3 +1,4 @@
+#include <algorithm>
 #include<bits/stdc++.h>
 using namespace std;
 using ll = long long;
@@ -49,7 +50,7 @@ template<class T> void printvc( vc<T> A) {for(auto i: A) cout << i << ' '; cout 
 
 
 
-// Segment Trees are cool and easy::: Yes I am a nerd!!
+// Segment Trees are cool and easy:::
 template<class T> class SegTree {
     public:
         int n, N = 1e5;
@@ -105,13 +106,11 @@ void solve();
 
 int main(void) {
     ios_base::sync_with_stdio(0), cin.tie(0);
-    int n; cin >> n;
-    while(n--) {solve();}
+    solve();
     return 0;
 }
 
 void solve() {
     int n; cin >> n;
-    int test[n]; for(int &x: test) cin >> x;
-
+    vc<ll> V(n+1); forw(i,1,n) cin>>V[i];
 }

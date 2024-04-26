@@ -21,6 +21,7 @@ constexpr ll infll = std::numeric_limits<ll>::max() / 2;
 #define revfor(i, j, k) for(int i = j; i >= k; i--)
 #define pb push_back
 #define sz(x) ((int)x.size())
+#define firstBigElement(Container, val) (upper_bound(v.begin(), v.end(), val)
 
 template<typename T, typename S> constexpr T ifloor(const T a, const S b){return a/b-(a%b&&(a^b)<0);}
 template<typename T, typename S> constexpr T iceil(const T a, const S b){return ifloor(a+b-1,b);}
@@ -85,22 +86,6 @@ template<class T> class SegTree {
 };
 
 
-template<class T> class BinaryIndexTree {
-    public:
-        T BArray[2*((int)1e5)];
-        T Array[2*((int)1e5)];
-        int n;
-
-        BinaryIndexTree(int SizeOfArrayMax, vc<T> A) {
-            n = SizeOfArrayMax+1;
-            forw(i, 1, n) Array[i] = BArray[i] = A[i-1];
-            T (*oper) (T &X, T &Y);
-            int i = 1;
-            while(i <= n) {}
-        }
-};
-
-
 void solve();
 
 int main(void) {
@@ -111,5 +96,5 @@ int main(void) {
 }
 
 void solve() {
-    
+
 }
