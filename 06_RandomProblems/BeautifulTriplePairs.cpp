@@ -1,8 +1,11 @@
 #include <map>
-#include <tuple>
+#include <limits>
+#include <bits/stdc++.h>
+#include <set>
+#include <stack>
+#include <queue>
 #include <vector>
 #include <iostream>
-#include <limits>
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
@@ -11,6 +14,7 @@ using vi = std::vector<int>;
 using vll = std::vector<long long>;
 using pii = std::pair<int, int>;
 using pll = std::pair<int, int>;
+using mii = std::map<int, int>;
 
 template<class T> using vc = std::vector<T>;
 template<class T, class S> using p = std::pair<T, S>;
@@ -94,14 +98,31 @@ void solve();
 
 int main(void) {
     ios_base::sync_with_stdio(0), cin.tie(0);
-    int n = 1; // cin >> n;
+    int n; cin >> n;
     while(n--) {solve();}
     return 0;
 }
 
 void solve() {
-    tuple tuple1 = {1,2,3}, tuple2 = {2,1,3};
-    if(tuple1 == tuple2) cout << "No beware\n";
-    else cout << "It is ordered\n";
+    int n; cin >> n;
+    map<mii,int> m12, m23, m13;
+    map<pair<int, pii>, int> m123;
+    int count = 0;
+    int arr[n];
+    for(int i: arr) cin >> i;
+    for(int i = 0; i < n-3; i++) {
+        int val = m123[{arr[i], {arr[i+1], arr[i+2]}}];
+
+        count += m12[{arr[i], arr[i+1]}] - val;
+        count += m23[{arr[i+1], arr[i+2]}] - val;
+        count += m13[{arr[i+2], arr[i]}] - val;
+
+        m12[{arr[i], arr[i+1]}]++;
+        m23[{arr[i+1], arr[i+2]}]++;
+        m13[{arr[i+2], arr[i]}]++;
+        m123[{arr[i], {arr[i+1], arr[i+2]}}]++;
+    }
+
+    cout << count << endl;
 }
 

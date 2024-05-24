@@ -1,8 +1,10 @@
 #include <map>
-#include <tuple>
+#include <limits>
+#include <set>
+#include <stack>
+#include <queue>
 #include <vector>
 #include <iostream>
-#include <limits>
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
@@ -94,14 +96,17 @@ void solve();
 
 int main(void) {
     ios_base::sync_with_stdio(0), cin.tie(0);
-    int n = 1; // cin >> n;
+    int n; cin >> n;
     while(n--) {solve();}
     return 0;
 }
 
 void solve() {
-    tuple tuple1 = {1,2,3}, tuple2 = {2,1,3};
-    if(tuple1 == tuple2) cout << "No beware\n";
-    else cout << "It is ordered\n";
+    int x, y; cin >> x >> y;
+    int Y = y/2;
+    int total;
+    if(7*Y + (y&1)*11 >= x) total = Y + (y&1);
+    else total = Y + (y&1) + iceil(x - (Y*7 + (y&1)*11), 15);
+    cout << total << endl;
 }
 

@@ -1,8 +1,11 @@
 #include <map>
-#include <tuple>
+#include <limits>
+#include <set>
+#include <stack>
+#include <queue>
+#include <strings.h>
 #include <vector>
 #include <iostream>
-#include <limits>
 using namespace std;
 using ll = long long;
 using ull = unsigned long long;
@@ -94,14 +97,27 @@ void solve();
 
 int main(void) {
     ios_base::sync_with_stdio(0), cin.tie(0);
-    int n = 1; // cin >> n;
+    int n; cin >> n;
     while(n--) {solve();}
     return 0;
 }
 
 void solve() {
-    tuple tuple1 = {1,2,3}, tuple2 = {2,1,3};
-    if(tuple1 == tuple2) cout << "No beware\n";
-    else cout << "It is ordered\n";
+    int n; string S; cin >> n >> S;
+    set<char> St;
+    for(char x: S) {
+        if(St.find(x) == St.end()) St.insert(x);
+    }
+    vc<char> V;
+    for(char x: St) V.push_back(x);
+    // printvc(V);
+    for(char x: S) {
+        int index = 0;
+        for(;index < sz(V); index++) {
+            if(x == V[index]) {break;}
+        }
+        cout << V[sz(V) - 1 - index];
+    }
+    cout << endl;
 }
 
