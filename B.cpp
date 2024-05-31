@@ -1,0 +1,89 @@
+#include <deque>
+#include <ios>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <map>
+#include <math.h>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string.h>
+#include <vector>
+
+using namespace std;
+
+using ll = long long int;
+using u32 = unsigned int;
+using u64 = unsigned long long;
+using i128 = __int128;
+using u128 = unsigned __int128;
+using vi = vector<int>;
+using vll = vector<long long int>;
+using pii = pair<int, int>;
+using pll = pair<long long, long long>;
+
+template <class T> using vc = vector<T>;
+template <class T, class S> using pr = pair<T, S>;
+constexpr int inf = numeric_limits<int>::max() / 2;
+constexpr ll llinf = numeric_limits<long long>::max() / 2;
+
+template <typename T, typename S> constexpr T ifloor(const T a, const S b) {
+  return a / b - (a % b && (a ^ b) < 0);
+}
+template <typename T, typename S> constexpr T iceil(const T a, const S b) {
+  return ifloor(a + b - 1, b);
+}
+
+template <class T> void printvc(const vc<T> &A) {
+  for (T &x : A)
+    cout << x << " ";
+  cout << '\n';
+}
+
+template <class T> string Binary(T x) {
+  string S = "";
+  while (x) {
+    if (x & 1)
+      S = '1' + S;
+    else
+      S = '0' + S;
+    x >>= 1;
+  }
+  return S;
+}
+
+#define all(x) (x).begin(), (x).end()
+#define pb push_back
+#define sz(x) ((int)x.size())
+#define forw(i,j,k) for (int i = j; i <= k; i++)
+#define revfor(i,j,k) for (int i = j; i >= k; i--)
+void solve();
+
+int main(void) {
+  ios_base::sync_with_stdio(false), cin.tie(0);
+  int n;
+  cin >> n;
+  while (n--) {
+    solve();
+  }
+  return 0;
+}
+
+void solve() {
+    int n; cin >> n;
+    vll A(n), B(n+1);
+    for(ll &x: A) cin >> x;
+    for(ll &x: B) cin >> x;
+    int target = B[n];
+    ll sum = 0, m = abs(A[0]-B[n]);
+    for(int i = 0; i < n; i++) {
+        if(A[i] <= target && B[i] >= target) m = 0;
+        if(B[i] <= target && A[i] >= target) m = 0;
+        else m = min(m, min(abs(A[i]-target), abs(B[i]-target)));
+        sum += abs(A[i]-B[i]);
+    }
+    cout << sum + m + 1 << endl;
+}
+
