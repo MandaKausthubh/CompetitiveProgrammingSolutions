@@ -1,0 +1,96 @@
+#include <deque>
+#include <iomanip>
+#include <ios>
+#include <iostream>
+#include <iterator>
+#include <limits>
+#include <map>
+#include <math.h>
+#include <numeric>
+#include <queue>
+#include <set>
+#include <stack>
+#include <string.h>
+#include <vector>
+
+using namespace std;
+
+using ll = long long int;
+using u32 = unsigned int;
+using u64 = unsigned long long;
+using i128 = __int128;
+using u128 = unsigned __int128;
+using vi = vector<int>;
+using vll = vector<long long int>;
+using pii = pair<int, int>;
+using pll = pair<long long, long long>;
+
+template <class T> using vc = vector<T>;
+template <class T, class S> using pr = pair<T, S>;
+constexpr int inf = numeric_limits<int>::max() / 2;
+constexpr ll llinf = numeric_limits<long long>::max() / 2;
+
+template <typename T, typename S> constexpr T ifloor(const T a, const S b) {
+  return a / b - (a % b && (a ^ b) < 0);
+}
+template <typename T, typename S> constexpr T iceil(const T a, const S b) {
+  return ifloor(a + b - 1, b);
+}
+
+template <class T> void printvc(const vc<T> &A) {
+  for (T x : A)
+    cout << x << " ";
+  cout << '\n';
+}
+
+template <class T> string Binary(T x) {
+  string S = "";
+  while (x) {
+    if (x & 1)
+      S = '1' + S;
+    else
+      S = '0' + S;
+    x >>= 1;
+  }
+  return S;
+}
+
+#define all(x) (x).begin(), (x).end()
+#define pb push_back
+#define sz(x) ((int)x.size())
+#define forw(i,j,k) for (int i = j; i <= k; i++)
+#define revfor(i,j,k) for (int i = j; i >= k; i--)
+void solve();
+
+int main(void) {
+  ios_base::sync_with_stdio(false), cin.tie(0);
+  int n = 1;
+  // cin >> n;
+  while (n--) {
+    solve();
+  }
+  return 0;
+}
+
+int a, b, c, d, p;
+
+long double price(int k) {
+    return p * (sin(a*k+b) + cos(c*k+d) + 2);
+}
+
+void solve() {
+    std::cout << std::fixed << std::setprecision(10);
+    int n; cin >> p >> a >> b >> c >> d >> n;
+    long double S = 0, mini = 0;
+    forw(i,1,n-1) {
+        S = S + price(i+1) - price(i);
+        S = min((long double) 0, S);
+        mini = max(mini, -S);
+    }
+    cout << mini << endl;
+}
+
+
+
+
+
