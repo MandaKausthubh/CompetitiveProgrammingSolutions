@@ -1,11 +1,9 @@
-#include <vector>
+#include <iostream>
 #include <set>
+#include <vector>
+#include <algorithm>
 #include <map>
 #include <numeric>
-#include <limits>
-#include <iterator>
-#include <iostream>
-#include <algorithm>
 
 using namespace std;
 using ll = long long;
@@ -15,24 +13,20 @@ using vi = std::vector<int>;
 using vll = std::vector<long long>;
 using pii = std::pair<int, int>;
 using pll = std::pair<int, int>;
-using mii = std::map<int,int>;
 
 template<class T> using vc = std::vector<T>;
 template<class T, class S> using p = std::pair<T, S>;
-template<class T, class S> using m = std::map<T, S>;
+
 
 constexpr int inf = std::numeric_limits<int>::max() / 2;
 constexpr ll infll = std::numeric_limits<ll>::max() / 2;
+
 
 #define all(x) (x).begin(), (x).end()
 #define forw(i, j, k) for(int i = j; i <= k; i++)
 #define revfor(i, j, k) for(int i = j; i >= k; i--)
 #define pb push_back
 #define sz(x) ((int)x.size())
-#define vv(type,name,n,...) \
-    vector<vector<type>> name(n,vector<type>(__VA_ARGS__))
-#define vvv(type,name,n1,n2,...) \
-    vector<vector<vector<type>>> name(n1,vector<vc<type>>(n2,...))
 
 template<typename T, typename S> constexpr T ifloor(const T a, const S b){return a/b-(a%b&&(a^b)<0);}
 template<typename T, typename S> constexpr T iceil(const T a, const S b){return ifloor(a+b-1,b);}
@@ -42,6 +36,7 @@ template<class T> vc<T> operator+(const vc<T> &B, const vc<T> &A) {
     forw(i, 0, sz(C)-1) C[i] = A[i] + B[i];
     return C;
 }
+
 
 template<class T> vc<T> operator-(const vc<T> &B, const vc<T> &A) {
     vc<T> C(min(sz(A), sz(B)));
@@ -55,7 +50,10 @@ template<class T> vc<T> operator* (const vc<T> &B, const vc<T> &A) {
     return C;
 }
 
+
 template<class T> void printvc( vc<T> A) {for(auto i: A) cout << i << ' '; cout << "\n";}
+
+
 
 // Segment Trees are cool and easy:::
 template<class T> class SegTree {
@@ -92,6 +90,7 @@ template<class T> class SegTree {
         }
 };
 
+
 template<class T> class BinaryIndexTree {
     public:
         T BArray[2*((int)1e5)];
@@ -107,6 +106,7 @@ template<class T> class BinaryIndexTree {
         }
 };
 
+
 void solve();
 
 int main(void) {
@@ -117,12 +117,25 @@ int main(void) {
 }
 
 void solve() {
-    vv(int,a,10,20,-10);
-    forw(i,0,9) {
-        forw(j,0,19) {
-            cout << a[i][j] << ' ';
-        }
-        cout << endl;
-    }
-}
+    int n; cin >> n;
+    vi a(n), b(n);
+    
+    for(int &x: a) cin >> x;
+    for(int &x: b) cin >> x;
 
+    int a11=0, a22=0;
+    int A=0, B=0;
+
+    forw(i,0,n-1) {
+        if(a[i] == b[i]) {
+            if(a[i] == 1) a11++;
+            if(a[i] == -1) a22++;
+        } else if (a[i] > b[i]) {
+            A += a[i];
+        } else B += b[i];
+    }
+
+    cout << a11 << ' ' << a22 << ' ' << A << ' ' << B << endl;
+
+    cout << min(A, B) - iceil(a22,2) + ifloor(a11,2) << endl;
+}
