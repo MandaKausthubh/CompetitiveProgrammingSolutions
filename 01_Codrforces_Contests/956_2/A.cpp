@@ -1,4 +1,3 @@
-#include <cstdint>
 #include <deque>
 #include <ios>
 #include <iostream>
@@ -65,77 +64,17 @@ void solve();
 int main(void) {
   ios_base::sync_with_stdio(false), cin.tie(0);
   int n;
-  // cin >> n;
-  n = 1;
+  cin >> n;
   while (n--) {
     solve();
   }
   return 0;
 }
 
-void outshuffle(vi &a) {
-  int n = (sz(a) + 1)/2;
-  vi x, y;
-  forw(i,0,sz(a)-1) {
-    if(i < n)
-       x.pb(a[i]);
-    else
-       y.pb(a[i]);
-  }
-
-  forw(i,0,sz(a)-1){
-    if(i&1) {
-      a[i] = y[i/2];
-    } else {
-      a[i] = x[i/2];
-    }
-  }
-  x.clear(), y.clear();
-}
-
-void inshuffle(vi &a) {
-  int n = (sz(a))/2;
-  vi x, y;
-
-  forw(i,0,sz(a)-1) {
-    if(i < n)
-       x.pb(a[i]);
-    else
-       y.pb(a[i]);
-  }
-
-  forw(i,0,sz(a)-1){
-    if(i&1) {
-      a[i] = x[i/2];
-    } else {
-      a[i] = y[i/2];
-    }
-  }
-  x.clear(), y.clear();
-}
-
-bool check(vi &a) {
-  forw(i,0,sz(a)-1) {
-    if(i!=a[i]) return true;
-  }
-  return false;
-}
 
 void solve() {
-  int n; string s; cin >> n >> s;
-  if(s == "out") {
-    vi a(n);
-    forw(i,0,n-1) a[i] = i;
-    outshuffle(a); int count = 1;
-    while(check(a)) {outshuffle(a);count++;}
-    cout << count << endl;
-  }
-  else if (s=="in"){
-    vi a(n);
-    forw(i,0,n-1) a[i] = i;
-    inshuffle(a); int count = 1;
-    while(check(a)) {inshuffle(a);count++;}
-    cout << count << endl;
-  }
+    int n; cin >> n;
+    forw(i,1,n) cout << i << ' ';
+    cout << endl;
 }
 
